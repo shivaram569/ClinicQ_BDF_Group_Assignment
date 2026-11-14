@@ -1,4 +1,3 @@
-# Use this workspace to collaborate
 workspace:
   id: 9cbe2525-2434-4e70-8f8a-2bddbba35f2f
 
@@ -7,7 +6,16 @@ localResources:
     - ../main-project/postman/ClinicQ_Health_Centre.postman_collection.json
     - ../shared/postman-collection/ClinicQ_Health_Centre.postman_collection.json
     - ../CONTRIBUTION_6_POSTMAN_AND_README/source-code/postman/ClinicQ_Health_Centre.postman_collection.json
+    - ../CONTRIBUTION_3_REST_ENDPOINTS/postman/ClinicQ_Health_Centre.postman_collection.json
+    - ../CONTRIBUTION_3_REST_ENDPOINTS/postman/Contribution_3_Demo_Collection.postman_collection.json
   environments:
     - ../main-project/postman/ClinicQ_Environment.postman_environment.json
     - ../shared/postman-collection/ClinicQ_Environment.postman_environment.json
     - ../CONTRIBUTION_6_POSTMAN_AND_README/source-code/postman/ClinicQ_Environment.postman_environment.json
+    - ../CONTRIBUTION_3_REST_ENDPOINTS/postman/ClinicQ_Environment.postman_environment.json
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../main-project/postman/ClinicQ_Health_Centre.postman_collection.json: 60142879-08f60cf0-3067-4ae5-a38a-a19f50fa9f05

@@ -1,5 +1,19 @@
 const { dbAsync } = require('../config/db');
 
+// Helper to format room output so both name and room_number are present
+function formatRoom(r) {
+    if (!r) return null;
+    return {
+        id: r.id,
+        name: r.room_number,
+        room_number: r.room_number,
+        floor: r.floor,
+        capacity: r.capacity,
+        status: r.status,
+        created_at: r.created_at
+    };
+}
+
 // GET /rooms - Retrieve all rooms, with optional query filtering (e.g. ?floor=2, ?status=available)
 const getAllRooms = async (req, res, next) => {
     try {
@@ -31,7 +45,7 @@ const getAllRooms = async (req, res, next) => {
             success: true,
             count: rooms.length,
             filters: { floor: floor || null, status: status || null },
-            data: rooms
+            data: rooms.map(formatRoom)
         });
     } catch (err) {
         next(err);
@@ -66,7 +80,7 @@ const getAvailableRooms = async (req, res, next) => {
             success: true,
             requested_date: date,
             available_count: availableRooms.length,
-            data: availableRooms
+            data: availableRooms.map(formatRoom)
         });
     } catch (err) {
         next(err);
@@ -88,30 +102,33 @@ const getRoomById = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            data: room
+            data: formatRoom(room)
         });
     } catch (err) {
         next(err);
     }
 };
 
-// POST /rooms - Create a new room
+// POST /rooms - Create a new room (supports both room_number and name, default capacity = 4)
 const createRoom = async (req, res, next) => {
     try {
-        const { room_number, floor, capacity, status = 'available' } = req.body;
+        const room_name = (req.body.room_number || req.body.name || '').trim();
+        const floor = parseInt(req.body.floor, 10);
+        const capacity = req.body.capacity !== undefined ? parseInt(req.body.capacity, 10) : 4;
+        const status = req.body.status || 'available';
 
         // Check for duplicate room number
-        const existing = await dbAsync.get('SELECT id FROM rooms WHERE room_number = ?', [room_number.trim()]);
+        const existing = await dbAsync.get('SELECT id FROM rooms WHERE room_number = ?', [room_name]);
         if (existing) {
             return res.status(409).json({
                 success: false,
-                error: `A room with room number "${room_number}" already exists.`
+                error: `A room with room number "${room_name}" already exists.`
             });
         }
 
         const result = await dbAsync.run(
             'INSERT INTO rooms (room_number, floor, capacity, status) VALUES (?, ?, ?, ?)',
-            [room_number.trim(), parseInt(floor, 10), parseInt(capacity, 10), status]
+            [room_name, floor, capacity, status]
         );
 
         const newRoom = await dbAsync.get('SELECT * FROM rooms WHERE id = ?', [result.lastID]);
@@ -119,7 +136,7 @@ const createRoom = async (req, res, next) => {
         res.status(201).json({
             success: true,
             message: 'Room created successfully.',
-            data: newRoom
+            data: formatRoom(newRoom)
         });
     } catch (err) {
         next(err);
@@ -130,8 +147,6 @@ const createRoom = async (req, res, next) => {
 const updateRoom = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { room_number, floor, capacity, status } = req.body;
-
         const existing = await dbAsync.get('SELECT * FROM rooms WHERE id = ?', [id]);
         if (!existing) {
             return res.status(404).json({
@@ -140,18 +155,21 @@ const updateRoom = async (req, res, next) => {
             });
         }
 
+        const room_name = (req.body.room_number || req.body.name);
+        const { floor, capacity, status } = req.body;
+
         // Check if updating to an existing room number of another room
-        if (room_number && room_number.trim() !== existing.room_number) {
-            const duplicate = await dbAsync.get('SELECT id FROM rooms WHERE room_number = ? AND id != ?', [room_number.trim(), id]);
+        if (room_name && room_name.trim() !== existing.room_number) {
+            const duplicate = await dbAsync.get('SELECT id FROM rooms WHERE room_number = ? AND id != ?', [room_name.trim(), id]);
             if (duplicate) {
                 return res.status(409).json({
                     success: false,
-                    error: `A room with room number "${room_number}" already exists.`
+                    error: `A room with room number "${room_name}" already exists.`
                 });
             }
         }
 
-        const updatedRoomNumber = room_number ? room_number.trim() : existing.room_number;
+        const updatedRoomNumber = room_name ? room_name.trim() : existing.room_number;
         const updatedFloor = floor !== undefined ? parseInt(floor, 10) : existing.floor;
         const updatedCapacity = capacity !== undefined ? parseInt(capacity, 10) : existing.capacity;
         const updatedStatus = status ? status : existing.status;
@@ -166,7 +184,7 @@ const updateRoom = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: 'Room updated successfully.',
-            data: updatedRoom
+            data: formatRoom(updatedRoom)
         });
     } catch (err) {
         next(err);

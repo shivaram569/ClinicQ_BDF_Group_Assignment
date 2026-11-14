@@ -1,0 +1,10 @@
+name: ClinicQ Health Centre - Local Environment
+values:
+  - key: base_url
+    value: 'http://localhost:3000'
+  - key: created_doctor_id
+    value: '6'
+  - key: created_room_id
+    value: '7'
+  - key: created_booking_id
+    value: '4'

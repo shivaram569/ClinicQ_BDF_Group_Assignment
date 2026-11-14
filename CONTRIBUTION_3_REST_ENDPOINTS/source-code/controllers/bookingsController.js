@@ -67,6 +67,7 @@ const getBookingDetails = async (req, res, next) => {
                 d.specialization AS doctor_specialization,
                 b.room_id,
                 r.room_number,
+                r.room_number AS room_name,
                 r.floor AS room_floor,
                 b.start_date,
                 b.end_date,

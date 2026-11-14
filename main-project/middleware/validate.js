@@ -44,14 +44,15 @@ const validateDoctor = (req, res, next) => {
     next();
 };
 
-// 2. Room Validation
+// 2. Room Validation (supports both room_number and name, floor, optional capacity)
 const validateRoom = (req, res, next) => {
-    const { room_number, floor, capacity, status } = req.body;
+    const room_name = req.body.room_number || req.body.name;
+    const { floor, capacity, status } = req.body;
 
-    if (!room_number || typeof room_number !== 'string' || room_number.trim() === '') {
+    if (!room_name || typeof room_name !== 'string' || room_name.trim() === '') {
         return res.status(400).json({
             success: false,
-            error: 'Room number is required and must be a non-empty string.'
+            error: 'Room name or room number is required and must be a non-empty string.'
         });
     }
 
@@ -62,7 +63,7 @@ const validateRoom = (req, res, next) => {
         });
     }
 
-    if (capacity === undefined || capacity === null || isNaN(Number(capacity)) || Number(capacity) <= 0) {
+    if (capacity !== undefined && capacity !== null && (isNaN(Number(capacity)) || Number(capacity) <= 0)) {
         return res.status(400).json({
             success: false,
             error: 'Capacity must be a positive integer greater than zero.'
