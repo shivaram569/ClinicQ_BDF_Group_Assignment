@@ -19,18 +19,31 @@ const PDFDocument = require('pdfkit');
 const baseDir = path.join(__dirname, '..');
 const originalQuestionImg = path.join(baseDir, 'shared', 'group-information', 'original_question.jpg');
 
+const academicInfo = {
+    classAndSection: "313 AI DE 2B",
+    studyLevel: "UG",
+    yearAndTerm: "2 & 2",
+    subject: "Backend Development Fundamentals",
+    faculty: "Mr Yugandhar Gurjalwar",
+    assessment: "GROUP ASSIGNMENT",
+    groupId: "YG-AIDE2B-G08",
+    groupNumber: "Group 8 of 15"
+};
+
 const membersTableData = [
-    { sno: '1', name: 'Member 1 [Student Name Placeholder]', contrib: 'Contribution 1', role: 'Server and routes: Express setup, routes, status codes' },
-    { sno: '2', name: 'Member 2 [Student Name Placeholder]', contrib: 'Contribution 2', role: 'Database: The 3 tables, schema, constraints, queries' },
-    { sno: '3', name: 'Member 3 [Student Name Placeholder]', contrib: 'Contribution 3', role: 'REST endpoints: CRUD and the join endpoint' },
-    { sno: '4', name: 'Member 4 [Student Name Placeholder]', contrib: 'Contribution 4', role: 'Validation and search: Input checks, error messages, search' },
-    { sno: '5', name: 'Member 5 [Student Name Placeholder]', contrib: 'Contribution 5', role: 'Twist rule: Free on this date, NOT EXISTS, conflict prevention' },
-    { sno: '6', name: 'Member 6 [Student Name Placeholder]', contrib: 'Contribution 6', role: 'Postman and README: Test collection, assertions, documentation' }
+    { sno: '1', name: 'm.chatish kuldeep', reg: '252U1R5102', contrib: 'Contribution 1', role: 'Server and routes: Express setup, routes, status codes' },
+    { sno: '2', name: 'o.sai kiran', reg: '252U1R5116', contrib: 'Contribution 2', role: 'Database: The 3 tables, schema, constraints, queries' },
+    { sno: '3', name: 'M.SHIVARAM', reg: '252U1R5104', contrib: 'Contribution 3', role: 'REST endpoints: CRUD and the join endpoint' },
+    { sno: '4', name: 'k.harshith', reg: '252U1R5083', contrib: 'Contribution 4', role: 'Validation and search: Input checks, error messages, search' },
+    { sno: '5', name: 'n.bhupal reddy', reg: '252U1R5114', contrib: 'Contribution 5', role: 'Twist rule: Free on this date, NOT EXISTS, conflict prevention' },
+    { sno: '6', name: 'k.lava kumar', reg: '252U1R5086', contrib: 'Contribution 6', role: 'Postman and README: Test collection, assertions, documentation' }
 ];
 
 const contributionsConfig = [
     {
         num: 1,
+        studentName: "m.chatish kuldeep",
+        regNo: "252U1R5102",
         title: "Server Architecture, Routing & Middleware Integration",
         role: "Server and Routes Specialist",
         folder: "CONTRIBUTION_1_SERVER_AND_ROUTES",
@@ -61,6 +74,8 @@ const contributionsConfig = [
     },
     {
         num: 2,
+        studentName: "o.sai kiran",
+        regNo: "252U1R5116",
         title: "Database Architecture, Relational Schema & Constraints",
         role: "Database Architect",
         folder: "CONTRIBUTION_2_DATABASE",
@@ -92,6 +107,8 @@ const contributionsConfig = [
     },
     {
         num: 3,
+        studentName: "M.SHIVARAM",
+        regNo: "252U1R5104",
         title: "RESTful CRUD Endpoints & Relational SQL JOIN Operation",
         role: "REST API Developer",
         folder: "CONTRIBUTION_3_REST_ENDPOINTS",
@@ -122,6 +139,8 @@ const contributionsConfig = [
     },
     {
         num: 4,
+        studentName: "k.harshith",
+        regNo: "252U1R5083",
         title: "Input Validation, HTTP 400 Error Handling & Query Parameter Search",
         role: "Validation and Search Engineer",
         folder: "CONTRIBUTION_4_VALIDATION_AND_SEARCH",
@@ -152,6 +171,8 @@ const contributionsConfig = [
     },
     {
         num: 5,
+        studentName: "n.bhupal reddy",
+        regNo: "252U1R5114",
         title: "Assignment Twist Rule: Date Availability Logic & Conflict Prevention",
         role: "Twist Rule & Availability Specialist",
         folder: "CONTRIBUTION_5_TWIST_RULE",
@@ -185,6 +206,8 @@ const contributionsConfig = [
     },
     {
         num: 6,
+        studentName: "k.lava kumar",
+        regNo: "252U1R5086",
         title: "Postman API Test Suite, Automation Harness & Project Documentation",
         role: "QA, Postman & Documentation Specialist",
         folder: "CONTRIBUTION_6_POSTMAN_AND_README",
@@ -226,6 +249,7 @@ async function createDocxReport(config) {
             children: [
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "S.No.", bold: true, color: "FFFFFF" })] })], shading: { fill: "003366" } }),
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Group Member Name", bold: true, color: "FFFFFF" })] })], shading: { fill: "003366" } }),
+                new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Registration No.", bold: true, color: "FFFFFF" })] })], shading: { fill: "003366" } }),
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Contribution", bold: true, color: "FFFFFF" })] })], shading: { fill: "003366" } }),
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Assigned Responsibility", bold: true, color: "FFFFFF" })] })], shading: { fill: "003366" } })
             ]
@@ -239,6 +263,7 @@ async function createDocxReport(config) {
                 children: [
                     new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: m.sno, bold: isCurrent })] })] }),
                     new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: m.name, bold: isCurrent, color: isCurrent ? "003366" : "000000" })] })] }),
+                    new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: m.reg, bold: isCurrent })] })] }),
                     new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: m.contrib, bold: isCurrent })] })] }),
                     new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: m.role, bold: isCurrent })] })] })
                 ]
@@ -257,7 +282,7 @@ async function createDocxReport(config) {
         }),
         new Paragraph({
             children: [
-                new TextRun({ text: "Course: Backend Development Fundamentals (BDF) · Modules 1 to 3", bold: true, size: 22, color: "4A5568" })
+                new TextRun({ text: `Subject: ${academicInfo.subject} · Modules 1 to 3`, bold: true, size: 22, color: "4A5568" })
             ],
             alignment: AlignmentType.CENTER,
             spacing: { after: 80 }
@@ -287,10 +312,10 @@ async function createDocxReport(config) {
         // Metadata Header Box
         new Paragraph({
             children: [
-                new TextRun({ text: `Group ID: YG-AIDE2B-G08  |  Section: AIDE2B  |  Group: Group 8 of 15\n`, bold: true }),
-                new TextRun({ text: `Assigned Role: ${config.role}\n`, bold: true }),
-                new TextRun({ text: `Student Name: [Student Name Placeholder]    |    Student ID: [Student ID Placeholder]\n` }),
-                new TextRun({ text: `Academic Submission Date: November 2026    |    Marks Weightage: 100 Marks (70 Group + 30 Individual)` })
+                new TextRun({ text: `Student Name: ${config.studentName}    |    Registration Number: ${config.regNo}\n`, bold: true }),
+                new TextRun({ text: `Class & Section: ${academicInfo.classAndSection}    |    Study Level: ${academicInfo.studyLevel}    |    Year & Term: ${academicInfo.yearAndTerm}\n` }),
+                new TextRun({ text: `Faculty In-Charge: ${academicInfo.faculty}    |    Assessment: ${academicInfo.assessment}\n`, bold: true }),
+                new TextRun({ text: `Group ID: ${academicInfo.groupId}    |    ${academicInfo.groupNumber}    |    Weightage: 100 Marks (70 Group + 30 Individual)` })
             ],
             spacing: { after: 240 }
         }),
@@ -302,7 +327,7 @@ async function createDocxReport(config) {
             spacing: { before: 200, after: 120 }
         }),
         new Paragraph({
-            children: [new TextRun({ text: "The allocation of responsibilities across the six group members for Group YG-AIDE2B-G08 is outlined below. Each member retains exclusive ownership of their assigned technical module:" })],
+            children: [new TextRun({ text: `The allocation of responsibilities across the six group members for Group ${academicInfo.groupId} is outlined below. Each member retains exclusive ownership of their assigned technical module:` })],
             spacing: { after: 120 }
         }),
         new Table({
@@ -352,6 +377,8 @@ async function createDocxReport(config) {
         }),
         new Paragraph({
             children: [
+                new TextRun({ text: "Student Name: ", bold: true }),
+                new TextRun({ text: `${config.studentName} (${config.regNo})\n` }),
                 new TextRun({ text: "Assigned Role: ", bold: true }),
                 new TextRun({ text: `${config.role}\n` }),
                 new TextRun({ text: "Module Title: ", bold: true }),
@@ -506,7 +533,7 @@ function createPdfReport(config) {
 
         // Header
         doc.fontSize(16).fillColor('#003366').text('AURORA ACADEMIC ASSESSMENT REPORT', { align: 'center' });
-        doc.fontSize(10).fillColor('#4A5568').text('Backend Development Fundamentals (BDF) · Modules 1 to 3', { align: 'center' });
+        doc.fontSize(10).fillColor('#4A5568').text(`Subject: ${academicInfo.subject} · Modules 1 to 3`, { align: 'center' });
         doc.fontSize(12).fillColor('#2B6CB0').text('ClinicQ Health Centre – Consultation Room Booking System', { align: 'center' });
         doc.moveDown(0.5);
         doc.fontSize(12).fillColor('#C53030').text(`INDIVIDUAL ASSESSMENT REPORT – CONTRIBUTION ${config.num}`, { align: 'center' });
@@ -514,13 +541,14 @@ function createPdfReport(config) {
         doc.moveDown(1);
 
         // Metadata box
-        doc.rect(40, doc.y, 515, 65).fillAndStroke('#F7FAFC', '#CBD5E0');
-        const boxY = doc.y - 60;
+        doc.rect(40, doc.y, 515, 75).fillAndStroke('#F7FAFC', '#CBD5E0');
+        const boxY = doc.y - 70;
         doc.fontSize(9).fillColor('#1A202C')
-            .text(`Group ID: YG-AIDE2B-G08  |  Section: AIDE2B  |  Group: Group 8 of 15`, 50, boxY)
-            .text(`Assigned Role: ${config.role}`, 50, boxY + 14)
-            .text(`Student Name: [Student Name Placeholder]    |    Student ID: [Student ID Placeholder]`, 50, boxY + 28)
-            .text(`Submission Date: November 2026    |    Weightage: 100 Marks (70 Group + 30 Individual)`, 50, boxY + 42);
+            .text(`Student Name: ${config.studentName}    |    Registration Number: ${config.regNo}`, 50, boxY, { bold: true })
+            .text(`Class & Section: ${academicInfo.classAndSection}    |    Study Level: ${academicInfo.studyLevel}    |    Year & Term: ${academicInfo.yearAndTerm}`, 50, boxY + 14)
+            .text(`Faculty In-Charge: ${academicInfo.faculty}    |    Assessment: ${academicInfo.assessment}`, 50, boxY + 28)
+            .text(`Assigned Role: ${config.role}`, 50, boxY + 42)
+            .text(`Group ID: ${academicInfo.groupId}    |    ${academicInfo.groupNumber}    |    Weightage: 100 Marks`, 50, boxY + 56);
 
         doc.moveDown(2);
 
@@ -532,10 +560,11 @@ function createPdfReport(config) {
         let tableY = doc.y;
         doc.rect(40, tableY, 515, 20).fill('#003366');
         doc.fontSize(8).fillColor('#FFFFFF')
-            .text('S.No.', 45, tableY + 6, { width: 30 })
-            .text('Group Member Name', 80, tableY + 6, { width: 150 })
-            .text('Contribution', 235, tableY + 6, { width: 90 })
-            .text('Assigned Responsibility', 330, tableY + 6, { width: 220 });
+            .text('S.No.', 45, tableY + 6, { width: 25 })
+            .text('Group Member Name', 75, tableY + 6, { width: 110 })
+            .text('Reg No.', 190, tableY + 6, { width: 65 })
+            .text('Contribution', 260, tableY + 6, { width: 75 })
+            .text('Assigned Responsibility', 340, tableY + 6, { width: 210 });
 
         tableY += 20;
         membersTableData.forEach((m, idx) => {
@@ -543,10 +572,11 @@ function createPdfReport(config) {
             const rowBg = isCurr ? '#EBF8FF' : (idx % 2 === 0 ? '#FFFFFF' : '#F7FAFC');
             doc.rect(40, tableY, 515, 18).fillAndStroke(rowBg, '#E2E8F0');
             doc.fontSize(8).fillColor(isCurr ? '#003366' : '#2D3748')
-                .text(m.sno, 45, tableY + 5, { width: 30 })
-                .text(m.name, 80, tableY + 5, { width: 150 })
-                .text(m.contrib, 235, tableY + 5, { width: 90 })
-                .text(m.role, 330, tableY + 5, { width: 220 });
+                .text(m.sno, 45, tableY + 5, { width: 25 })
+                .text(m.name, 75, tableY + 5, { width: 110 })
+                .text(m.reg, 190, tableY + 5, { width: 65 })
+                .text(m.contrib, 260, tableY + 5, { width: 75 })
+                .text(m.role, 340, tableY + 5, { width: 210 });
             tableY += 18;
         });
 
@@ -568,7 +598,8 @@ function createPdfReport(config) {
         doc.fontSize(12).fillColor('#003366').text('4. DESCRIPTION OF WHAT I HAVE DEVELOPED', { underline: true });
         doc.moveDown(0.5);
         doc.fontSize(9).fillColor('#1A202C')
-            .text(`Assigned Role: ${config.role}`, { bold: true })
+            .text(`Student Name: ${config.studentName} (${config.regNo})`, { bold: true })
+            .text(`Assigned Role: ${config.role}`)
             .text(`Module Title: ${config.title}`)
             .text(`Technologies Used: ${config.technologies}`)
             .moveDown(0.5)
@@ -643,15 +674,16 @@ function createPdfReport(config) {
 async function run() {
     console.log('================================================================');
     console.log('Generating 6 Individual Assessment Documents (DOCX & PDF)');
+    console.log('Class: 313 AI DE 2B | Faculty: Mr Yugandhar Gurjalwar');
     console.log('================================================================');
 
     for (const config of contributionsConfig) {
-        console.log(`\nProcessing Contribution ${config.num}: ${config.title}`);
+        console.log(`\nProcessing Contribution ${config.num}: ${config.studentName} (${config.regNo})`);
         await createDocxReport(config);
         await createPdfReport(config);
     }
 
-    console.log('\nAll 12 Assessment Documents (6 DOCX + 6 PDF) generated successfully!');
+    console.log('\nAll 12 Assessment Documents (6 DOCX + 6 PDF) updated successfully with student details!');
 }
 
 run().catch(err => {

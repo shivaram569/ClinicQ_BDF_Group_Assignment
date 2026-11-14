@@ -1,7 +1,11 @@
 {
   "group_id": "YG-AIDE2B-G08",
-  "section": "AIDE2B",
-  "course": "Backend Development Fundamentals (BDF)",
+  "class_and_section": "313 AI DE 2B",
+  "study_level": "UG",
+  "year_and_term": "2 & 2",
+  "subject": "Backend Development Fundamentals",
+  "faculty": "Mr Yugandhar Gurjalwar",
+  "assessment": "GROUP ASSIGNMENT",
   "project_name": "ClinicQ Health Centre",
   "theme": "Theme 23 of 30 · Consultation rooms",
   "problem_statement": "Consultation rooms are assigned by the receptionist. Two doctors were given the same room at the same hour. Please build us a system that fixes this.",
@@ -9,50 +13,50 @@
   "members": [
     {
       "serial_no": 1,
-      "name": "Member 1 [Student Name Placeholder]",
-      "student_id": "STU-AIDE2B-01",
+      "name": "m.chatish kuldeep",
+      "registration_number": "252U1R5102",
       "contribution_number": "Contribution 1",
-      "role": "Server and Routes Specialist",
+      "role": "Server and routes: Express setup, routes, status codes",
       "responsibilities": "Express application setup, route architecture, HTTP status code enforcement, request logging middleware, global error handling."
     },
     {
       "serial_no": 2,
-      "name": "Member 2 [Student Name Placeholder]",
-      "student_id": "STU-AIDE2B-02",
+      "name": "o.sai kiran",
+      "registration_number": "252U1R5116",
       "contribution_number": "Contribution 2",
-      "role": "Database Architect",
+      "role": "Database: The 3 tables, schema, constraints, queries",
       "responsibilities": "Relational SQLite database schema design (doctors, rooms, bookings), PRAGMA foreign_keys = ON, constraints, seed data, database initialization script."
     },
     {
       "serial_no": 3,
-      "name": "Member 3 [Student Name Placeholder]",
-      "student_id": "STU-AIDE2B-03",
+      "name": "M.SHIVARAM",
+      "registration_number": "252U1R5104",
       "contribution_number": "Contribution 3",
-      "role": "REST API Developer",
+      "role": "REST endpoints: CRUD and the join endpoint",
       "responsibilities": "Complete CRUD endpoints for doctors, rooms, and bookings, plus SQL JOIN details endpoint (/bookings/details) combining doctor and room data."
     },
     {
       "serial_no": 4,
-      "name": "Member 4 [Student Name Placeholder]",
-      "student_id": "STU-AIDE2B-04",
+      "name": "k.harshith",
+      "registration_number": "252U1R5083",
       "contribution_number": "Contribution 4",
-      "role": "Validation and Search Engineer",
+      "role": "Validation and search: Input checks, error messages, search",
       "responsibilities": "Input validation middleware for types and formats, descriptive HTTP 400 error responses, query parameter searching (e.g. GET /rooms?floor=2)."
     },
     {
       "serial_no": 5,
-      "name": "Member 5 [Student Name Placeholder]",
-      "student_id": "STU-AIDE2B-05",
+      "name": "n.bhupal reddy",
+      "registration_number": "252U1R5114",
       "contribution_number": "Contribution 5",
-      "role": "Twist Rule & Availability Specialist",
+      "role": "Twist rule: Free on this date, NOT EXISTS, conflict prevention",
       "responsibilities": "Core Assignment Twist: GET /rooms/available?date=YYYY-MM-DD using SQL NOT EXISTS, date validation (end < start -> 400), overlapping booking prevention (409), and passing Compulsory Tests 1, 2, and 3."
     },
     {
       "serial_no": 6,
-      "name": "Member 6 [Student Name Placeholder]",
-      "student_id": "STU-AIDE2B-06",
+      "name": "k.lava kumar",
+      "registration_number": "252U1R5086",
       "contribution_number": "Contribution 6",
-      "role": "QA, Postman & Documentation Specialist",
+      "role": "Postman and README: Test collection, assertions, documentation",
       "responsibilities": "Comprehensive Postman v2.1 collection and environment with automated assertion scripts, test runner, full project documentation, and deployment guides."
     }
   ]

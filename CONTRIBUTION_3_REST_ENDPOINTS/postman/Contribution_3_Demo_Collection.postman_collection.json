@@ -1,0 +1,356 @@
+{
+  "info": {
+    "_postman_id": "c3-demo-m-shivaram-252u1r5104",
+    "name": "Contribution 3 Demo - M.SHIVARAM (CRUD & SQL JOIN)",
+    "description": "Official Demo Collection for Contribution 3 (REST Endpoints & Relational JOIN).\nDeveloper: M.SHIVARAM (252U1R5104)\nClass: 313 AI DE 2B | Group: YG-AIDE2B-G08\nFaculty: Mr Yugandhar Gurjalwar\nIncludes complete CRUD for Doctors, Rooms, Bookings, and the relational SQL JOIN endpoint.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Doctor CRUD Demo",
+      "item": [
+        {
+          "name": "1.1 GET All Doctors",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/doctors"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Returns array of doctors', function () { var d = pm.response.json(); pm.expect(d.data).to.be.an('array'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.2 POST Create Doctor (Dr. Gregory House)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dr. Gregory House\",\n  \"specialization\": \"Diagnostic Medicine\",\n  \"phone\": \"+1-555-0999\"\n}"
+            },
+            "url": "{{base_url}}/doctors"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201 Created', function () { pm.response.to.have.status(201); });",
+                  "var d = pm.response.json();",
+                  "if (d.data && d.data.id) pm.environment.set('demo_doctor_id', d.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.3 GET Single Doctor by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/doctors/{{demo_doctor_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.4 PUT Update Doctor Specialization",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dr. Gregory House, M.D.\",\n  \"specialization\": \"Infectious Diseases\",\n  \"phone\": \"+1-555-0998\"\n}"
+            },
+            "url": "{{base_url}}/doctors/{{demo_doctor_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.5 DELETE Doctor",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/doctors/{{demo_doctor_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Room CRUD Demo",
+      "item": [
+        {
+          "name": "2.1 GET All Rooms",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/rooms"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.2 POST Create Room (Room 401)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"room_number\": \"Room 401\",\n  \"floor\": 4,\n  \"capacity\": 8,\n  \"status\": \"available\"\n}"
+            },
+            "url": "{{base_url}}/rooms"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201 Created', function () { pm.response.to.have.status(201); });",
+                  "var d = pm.response.json();",
+                  "if (d.data && d.data.id) pm.environment.set('demo_room_id', d.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.3 GET Single Room by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/rooms/{{demo_room_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.4 PUT Update Room Capacity to 10",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"room_number\": \"Room 401-A\",\n  \"floor\": 4,\n  \"capacity\": 10,\n  \"status\": \"available\"\n}"
+            },
+            "url": "{{base_url}}/rooms/{{demo_room_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.5 DELETE Room",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/rooms/{{demo_room_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Booking CRUD Demo",
+      "item": [
+        {
+          "name": "3.1 GET All Bookings",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/bookings"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.2 POST Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctor_id\": 1,\n  \"room_id\": 1,\n  \"start_date\": \"2026-12-05\",\n  \"end_date\": \"2026-12-06\",\n  \"start_time\": \"09:00\",\n  \"end_time\": \"12:00\",\n  \"status\": \"active\"\n}"
+            },
+            "url": "{{base_url}}/bookings"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201 Created', function () { pm.response.to.have.status(201); });",
+                  "var d = pm.response.json();",
+                  "if (d.data && d.data.id) pm.environment.set('demo_booking_id', d.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.3 GET Single Booking by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/bookings/{{demo_booking_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.4 PUT Update Booking Time",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctor_id\": 1,\n  \"room_id\": 1,\n  \"start_date\": \"2026-12-05\",\n  \"end_date\": \"2026-12-06\",\n  \"start_time\": \"10:00\",\n  \"end_time\": \"13:00\",\n  \"status\": \"active\"\n}"
+            },
+            "url": "{{base_url}}/bookings/{{demo_booking_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.5 DELETE Booking",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/bookings/{{demo_booking_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. MANDATORY SQL JOIN ENDPOINT (M.SHIVARAM KEY FEATURE)",
+      "item": [
+        {
+          "name": "GET /bookings/details (Relational SQL JOIN with Doctor & Room)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/bookings/details",
+            "description": "Executes SQL INNER JOIN across bookings, doctors, and rooms.\nReturns doctor_name, doctor_specialization, room_number, room_floor, start_date, end_date, start_time, end_time, booking_status."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 OK', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Contains doctor_name and room_number via SQL JOIN', function () {",
+                  "    var d = pm.response.json();",
+                  "    pm.expect(d.success).to.be.true;",
+                  "    pm.expect(d.data.length).to.be.above(0);",
+                  "    pm.expect(d.data[0]).to.have.property('doctor_name');",
+                  "    pm.expect(d.data[0]).to.have.property('room_number');",
+                  "    pm.expect(d.data[0]).to.have.property('start_date');",
+                  "    pm.expect(d.data[0]).to.have.property('start_time');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}

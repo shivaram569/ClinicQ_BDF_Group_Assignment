@@ -1,8 +1,11 @@
 # Contribution 2: Database Architecture & Relational Integrity
-**Course:** Backend Development Fundamentals (BDF)  
+**Course:** Backend Development Fundamentals (BDF) · Modules 1 to 3  
 **Project:** ClinicQ Health Centre - Consultation Room Booking System  
-**Assigned Member:** Member 2 [Student Name Placeholder]  
-**Group:** YG-AIDE2B-G08 | **Section:** AIDE2B  
+**Student Name:** o.sai kiran  
+**Registration Number:** 252U1R5116  
+**Class & Section:** 313 AI DE 2B | **Study Level:** UG | **Year & Term:** 2 & 2  
+**Faculty In-Charge:** Mr Yugandhar Gurjalwar  
+**Group ID:** YG-AIDE2B-G08  
 
 ---
 

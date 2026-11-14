@@ -1,8 +1,11 @@
 # Contribution 6: Postman Testing, Automation & Project Documentation
-**Course:** Backend Development Fundamentals (BDF)  
+**Course:** Backend Development Fundamentals (BDF) · Modules 1 to 3  
 **Project:** ClinicQ Health Centre - Consultation Room Booking System  
-**Assigned Member:** Member 6 [Student Name Placeholder]  
-**Group:** YG-AIDE2B-G08 | **Section:** AIDE2B  
+**Student Name:** k.lava kumar  
+**Registration Number:** 252U1R5086  
+**Class & Section:** 313 AI DE 2B | **Study Level:** UG | **Year & Term:** 2 & 2  
+**Faculty In-Charge:** Mr Yugandhar Gurjalwar  
+**Group ID:** YG-AIDE2B-G08  
 
 ---
 

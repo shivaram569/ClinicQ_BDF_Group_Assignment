@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: 9cbe2525-2434-4e70-8f8a-2bddbba35f2f
+
+localResources:
+  collections:
+    - ../main-project/postman/ClinicQ_Health_Centre.postman_collection.json
+    - ../shared/postman-collection/ClinicQ_Health_Centre.postman_collection.json
+    - ../CONTRIBUTION_6_POSTMAN_AND_README/source-code/postman/ClinicQ_Health_Centre.postman_collection.json
+  environments:
+    - ../main-project/postman/ClinicQ_Environment.postman_environment.json
+    - ../shared/postman-collection/ClinicQ_Environment.postman_environment.json
+    - ../CONTRIBUTION_6_POSTMAN_AND_README/source-code/postman/ClinicQ_Environment.postman_environment.json

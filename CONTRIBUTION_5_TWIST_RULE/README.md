@@ -1,8 +1,11 @@
 # Contribution 5: Assignment Twist Rule & Conflict Prevention
-**Course:** Backend Development Fundamentals (BDF)  
+**Course:** Backend Development Fundamentals (BDF) · Modules 1 to 3  
 **Project:** ClinicQ Health Centre - Consultation Room Booking System  
-**Assigned Member:** Member 5 [Student Name Placeholder]  
-**Group:** YG-AIDE2B-G08 | **Section:** AIDE2B  
+**Student Name:** n.bhupal reddy  
+**Registration Number:** 252U1R5114  
+**Class & Section:** 313 AI DE 2B | **Study Level:** UG | **Year & Term:** 2 & 2  
+**Faculty In-Charge:** Mr Yugandhar Gurjalwar  
+**Group ID:** YG-AIDE2B-G08  
 
 ---
 
