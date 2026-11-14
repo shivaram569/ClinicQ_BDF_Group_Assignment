@@ -1,0 +1,21 @@
+{
+  "name": "clinicq-bdf-group-assignment",
+  "version": "1.0.0",
+  "description": "ClinicQ Health Centre - Consultation Room Booking System (BDF Group Assignment YG-AIDE2B-G08)",
+  "scripts": {
+    "postinstall": "cd main-project && npm install",
+    "init-db": "cd main-project && npm run init-db",
+    "start": "cd main-project && npm start",
+    "test": "cd main-project && npm test"
+  },
+  "keywords": [
+    "bdf",
+    "express",
+    "sqlite3",
+    "consultation-rooms",
+    "postman",
+    "rest-api"
+  ],
+  "author": "YG-AIDE2B-G08 Group Members",
+  "license": "ISC"
+}

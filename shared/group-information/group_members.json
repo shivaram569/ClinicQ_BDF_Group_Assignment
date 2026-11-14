@@ -1,0 +1,59 @@
+{
+  "group_id": "YG-AIDE2B-G08",
+  "section": "AIDE2B",
+  "course": "Backend Development Fundamentals (BDF)",
+  "project_name": "ClinicQ Health Centre",
+  "theme": "Theme 23 of 30 · Consultation rooms",
+  "problem_statement": "Consultation rooms are assigned by the receptionist. Two doctors were given the same room at the same hour. Please build us a system that fixes this.",
+  "twist": "Free on this date - Return available rooms for requested date using NOT EXISTS logic; reject end_date < start_date with HTTP 400; prevent overlapping bookings with HTTP 409.",
+  "members": [
+    {
+      "serial_no": 1,
+      "name": "Member 1 [Student Name Placeholder]",
+      "student_id": "STU-AIDE2B-01",
+      "contribution_number": "Contribution 1",
+      "role": "Server and Routes Specialist",
+      "responsibilities": "Express application setup, route architecture, HTTP status code enforcement, request logging middleware, global error handling."
+    },
+    {
+      "serial_no": 2,
+      "name": "Member 2 [Student Name Placeholder]",
+      "student_id": "STU-AIDE2B-02",
+      "contribution_number": "Contribution 2",
+      "role": "Database Architect",
+      "responsibilities": "Relational SQLite database schema design (doctors, rooms, bookings), PRAGMA foreign_keys = ON, constraints, seed data, database initialization script."
+    },
+    {
+      "serial_no": 3,
+      "name": "Member 3 [Student Name Placeholder]",
+      "student_id": "STU-AIDE2B-03",
+      "contribution_number": "Contribution 3",
+      "role": "REST API Developer",
+      "responsibilities": "Complete CRUD endpoints for doctors, rooms, and bookings, plus SQL JOIN details endpoint (/bookings/details) combining doctor and room data."
+    },
+    {
+      "serial_no": 4,
+      "name": "Member 4 [Student Name Placeholder]",
+      "student_id": "STU-AIDE2B-04",
+      "contribution_number": "Contribution 4",
+      "role": "Validation and Search Engineer",
+      "responsibilities": "Input validation middleware for types and formats, descriptive HTTP 400 error responses, query parameter searching (e.g. GET /rooms?floor=2)."
+    },
+    {
+      "serial_no": 5,
+      "name": "Member 5 [Student Name Placeholder]",
+      "student_id": "STU-AIDE2B-05",
+      "contribution_number": "Contribution 5",
+      "role": "Twist Rule & Availability Specialist",
+      "responsibilities": "Core Assignment Twist: GET /rooms/available?date=YYYY-MM-DD using SQL NOT EXISTS, date validation (end < start -> 400), overlapping booking prevention (409), and passing Compulsory Tests 1, 2, and 3."
+    },
+    {
+      "serial_no": 6,
+      "name": "Member 6 [Student Name Placeholder]",
+      "student_id": "STU-AIDE2B-06",
+      "contribution_number": "Contribution 6",
+      "role": "QA, Postman & Documentation Specialist",
+      "responsibilities": "Comprehensive Postman v2.1 collection and environment with automated assertion scripts, test runner, full project documentation, and deployment guides."
+    }
+  ]
+}

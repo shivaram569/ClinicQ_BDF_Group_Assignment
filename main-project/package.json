@@ -1,0 +1,29 @@
+{
+  "name": "clinicq-backend",
+  "version": "1.0.0",
+  "description": "ClinicQ Health Centre - Consultation Room Booking System for Backend Development Fundamentals",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node database/init.js",
+    "test": "node test-runner.js"
+  },
+  "keywords": [
+    "express",
+    "sqlite3",
+    "bdf",
+    "consultation-rooms",
+    "booking-system",
+    "rest-api"
+  ],
+  "author": "YG-AIDE2B-G08 Group Members",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "docx": "^9.2.1",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1",
+    "pdfkit": "^0.17.2",
+    "sqlite3": "^6.0.1"
+  }
+}
