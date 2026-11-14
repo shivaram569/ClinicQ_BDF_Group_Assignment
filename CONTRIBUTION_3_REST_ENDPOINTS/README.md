@@ -28,8 +28,9 @@ As the **REST API Developer**, my core responsibility was implementing the compl
 - `source-code/controllers/doctorsController.js`: Doctor CRUD logic, database queries, and response formatting.
 - `source-code/controllers/roomsController.js`: Room CRUD logic with unique constraint checks (`409 Conflict`).
 - `source-code/controllers/bookingsController.js`: Booking CRUD operations and the relational SQL JOIN endpoint.
+- `postman/ClinicQ_Health_Centre_API.postman_collection.json`: Exact Postman collection pre-configured with direct `http://localhost:3000` URLs and matching screenshot tabs (`POST 1. Add New Room`, `GET 2. Get All Rooms`, `GET 3. Get Room by ID`, `GET 6. Get Booking Details (MANDATORY SQL JOIN)`). Operates directly with **No Environment** required.
 - `postman/Contribution_3_Demo_Collection.postman_collection.json`: Dedicated Postman collection pre-configured for M.SHIVARAM's live demo.
-- `postman/ClinicQ_Health_Centre.postman_collection.json`: Full project Postman collection.
+- `postman/ClinicQ_Health_Centre.postman_collection.json`: Full project Postman collection with test assertions.
 - `postman/ClinicQ_Environment.postman_environment.json`: Postman environment configuration (`http://localhost:3000`).
 - `assessment-document/Contribution_3_REST_Endpoints.docx`: Formal academic report in DOCX format.
 - `assessment-document/Contribution_3_REST_Endpoints.pdf`: Formal academic report in PDF format.
@@ -48,8 +49,8 @@ When Mr. Yugandhar Gurjalwar calls for your demo on **Monday 16 Nov**, follow th
    npm start
    ```
 2. Open Postman desktop app.
-3. Click **Import** $\rightarrow$ Select `Contribution_3_Demo_Collection.postman_collection.json` and `ClinicQ_Environment.postman_environment.json` from your `postman/` folder.
-4. Select environment: `ClinicQ Health Centre - Local Environment`.
+3. Click **Import** $\rightarrow$ Select `ClinicQ_Health_Centre_API.postman_collection.json` (or `Contribution_3_Demo_Collection.postman_collection.json`) from your `postman/` folder.
+4. Keep environment set to **"No Environment"** (all URLs are pre-configured to `http://localhost:3000`).
 
 ---
 
@@ -136,7 +137,7 @@ ORDER BY b.start_date DESC, b.start_time ASC;
 ## 7. Submission Package Contents for M.SHIVARAM
 Your standalone zip file [`Contribution_3.zip`](file:///C:/Users/mokeda%20shivaram/.gemini/antigravity/scratch/ClinicQ_BDF_Group_Assignment/Contribution_3.zip) contains:
 - `source-code/`: `doctorsController.js`, `roomsController.js`, `bookingsController.js`
-- `postman/`: `Contribution_3_Demo_Collection.postman_collection.json`, `ClinicQ_Health_Centre.postman_collection.json`, `ClinicQ_Environment.postman_environment.json`
+- `postman/`: `ClinicQ_Health_Centre_API.postman_collection.json`, `Contribution_3_Demo_Collection.postman_collection.json`, `ClinicQ_Health_Centre.postman_collection.json`, `ClinicQ_Environment.postman_environment.json`
 - `assessment-document/`: `Contribution_3_REST_Endpoints.docx` and `Contribution_3_REST_Endpoints.pdf`
 - `original_question.jpg`: Original assignment brief card
 - `screenshots/`: Actual code and API execution screenshots
